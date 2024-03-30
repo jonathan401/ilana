@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { getCollection } from "astro:content";
+
+// component
+import BlogCard from "../../components/BlogCard.astro";
+
+const allPosts = await getCollection("posts");
+
+let sortedPosts = allPosts.sort(
+  (a, b) =>
+    Number(new Date(b.data.publishDate)) - Number(new Date(a.data.publishDate))
+);
+---
+
+<BaseLayout pageTitle="Blog">
+  <div class="container">
+    <h1 class="px-sm">ReadMes</h1>
+    <ul class="blog-list">
+      {
+        sortedPosts.map((post) => (
+          <li>
+            <BlogCard
+              frontmatter={post.data}
+              url={`/blog/posts/${post.slug}`}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+<style>
+  .container {
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+
+  .blog-list {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(32rem, 100%), 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const identity = {
+  name: "Kehinde",
+  country: "Nigeria",
+  skills: ["HTML", "CSS", "Javascript", "React", "Astro"],
+};
+---
+
+<BaseLayout pageTitle="About">
+  <h1>About me</h1>
+  <p>
+    I&apos;m working on building a little place on the internet where I can
+    provide detailed explanations on the projects I build from now on
+  </p>
+  <p>Here are a few facts about me:</p>
+  <ul>
+    <li>My name {identity.name}</li>
+    <li>I live in {identity.country}</li>
+  </ul>
+  <p>My skills are:</p>
+  <ul>
+    {identity.skills.map((skill) => <li>{skill}</li>)}
+  </ul>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import navData from "../data/navData";
+---
+
+<header>
+  <h1><a href="/">Ilana</a></h1>
+  <button
+    class="navigation-toggler"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="primaryNavigation"
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+  <nav class="navigation" id="primaryNavigation">
+    <ul class="navigation__links">
+      {
+        navData.map((item) => (
+          <li>
+            <a href={item.path} class="navigation__link-item">
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style lang="scss">
+  header {
+    --height: 11vh;
+    --py: 1rem;
+    min-height: var(--height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-base-100);
+    padding: var(--py) 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .navigation-toggler {
+    padding: 0.3rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
+
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid var(--border-color);
+      outline-offset: 2px;
+    }
+
+    span {
+      border-radius: 0.25rem;
+      width: 30px;
+      height: 2px;
+      display: block;
+      background-color: var(--color-base-300);
+    }
+  }
+  .navigation {
+    // background-color: red;
+    // position: absolute;
+    // top: var(--height);
+    &__links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    &__link-item {
+      font-size: 1.2rem;
+    }
+  }
+</style>

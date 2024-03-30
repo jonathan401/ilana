@@ -1,0 +1,36 @@
+<footer>
+  <div class="footer__wrapper">
+    <p>Made with ❤️ by Kehinde</p>
+    <p>
+      Copyright &copy; <span id="copyright"></span> | All rights reserved
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 1rem;
+    text-align: center;
+    background-color: var(--neutral);
+    padding: 0.9rem 0;
+  }
+
+  .footer__wrapper {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer__wrapper p {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  document.querySelector("#copyright").textContent = new Date()
+    .getFullYear()
+    .toString();
+</script>

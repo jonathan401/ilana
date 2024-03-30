@@ -1,0 +1,82 @@
+---
+// library imports
+import { formatDate, humanDate } from "../utils/utils";
+
+import { type FrontmatterType } from "../types";
+
+interface BlogCardProps {
+  frontmatter: FrontmatterType;
+  url: string;
+}
+
+const { frontmatter, url } = Astro.props as BlogCardProps;
+
+const { title, description, tags, publishDate } = frontmatter;
+---
+
+<article class="card">
+  <div class="card__content">
+    <div class="card__header">
+      <a class="card__header__text" href={url}>{title}</a>
+      <time datetime={new Date(publishDate).toDateString()} class="card__date"
+        >{humanDate(publishDate)}</time
+      >
+    </div>
+    <p class="card__text">{description}</p>
+    <a class="card__action" href={url}>Read more</a>
+    <!-- <ul class="card__tags">{tags.map((tag: string) => <li><a href=`/tags/${tag}`>{tag}</a></li>)}</ul> -->
+  </div>
+</article>
+
+<style>
+  .card {
+    padding: 1.5rem;
+    border-radius: var(--rounded-xl);
+    border: 1px solid var(--border-color);
+    background-color: var(--neutral);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: var(--text-primary);
+  }
+
+  .card__date {
+    /* font-weight: 600; */
+    /* font-style: italic; */
+    /* font-size: 0.9rem; */
+  }
+
+  .card__image {
+    border-radius: var(--rounded-xl);
+  }
+
+  .card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+  }
+
+  .card__header__text {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    color: var(--color-primary);
+  }
+
+  .card__tags {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .card__action {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+</style>
